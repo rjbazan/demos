@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import FilterDrawer from "./FilterDrawer";
-import Calendar from "./components/calendar/Calendar";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    }
+  }
   render() {
+    const styles = {
+      transition: '1s ease-in',
+      width: this.state.open ? '10%' : 0,
+      backgroundColor: 'red',
+      height: 100,
+      position: 'absolute',
+      right: 0
+    }
+
+    const block = {
+      backgroundColor: 'blue',
+      width: '100%',
+      height: 100,
+    }
     return (
       <div className="App">
         <header className="App-header">
@@ -15,11 +33,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Calendar
-          onPeriodChange={ (a, b) => console.info(a, b)}
-          selectedMonth={ 1 }
-          selectedYear={ 2017 }
-        />
+        <button onClick={ () => this.setState({open: !this.state.open})}>Open</button>
       </div>
     );
   }
