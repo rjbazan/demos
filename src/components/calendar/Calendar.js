@@ -22,10 +22,12 @@ class Calendar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      month: nextProps.selectedMonth,
-      year: nextProps.selectedYear
-    });
+    if (nextProps.selectedMonth !== this.state.month || nextProps.selectedYear !== this.state.year) {
+      this.setState({
+        month: nextProps.selectedMonth,
+        year: nextProps.selectedYear
+      });
+    }
   }
 
   increment() {
@@ -83,9 +85,9 @@ class Calendar extends React.Component {
           month={this.props.months[this.state.month - 1]}
           year={this.state.year}
           defaultLabel={this.props.isYearPicker ? labelForYearMode : labelForMonthMode}
-          months={ this.props.months }
-          years={ this.props.years }
-          isYearPicker={ this.props.isYearPicker }
+          months={this.props.months}
+          years={this.props.years}
+          isYearPicker={this.props.isYearPicker}
         />
 
         <SovosIconButton onClick={this.props.isYearPicker ? this.yearDecrement : this.decrement} id="calendar-left">

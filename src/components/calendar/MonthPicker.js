@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FlatButton, Popover, Menu } from 's1-ui';
+import { FlatButton, Menu } from 's1-ui';
+import Popover from 'material-ui/Popover';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import CalendarButton from './CalendarButton';
 
@@ -136,7 +137,7 @@ class MonthPicker extends React.Component {
 MonthPicker.propTypes = {
   month: PropTypes.string,
   year: PropTypes.number,
-  defaultLabel: PropTypes.string.isRequired,
+  defaultLabel: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]),
   muiTheme: PropTypes.object,
   input: PropTypes.object,
   onChange: PropTypes.func,

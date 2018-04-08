@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Stepper from '../stepper/Steps';
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +25,32 @@ class App extends Component {
       width: '100%',
       height: 100,
     }
+
+    const steps = [{
+      Name: 'Transmit to Government',
+      Logs: ['Succesfully packaged and transmitted', 'The import falied. Go to import catches and upload a batch again, the tremendous power', '2', '3'],
+      Id: 'a'
+    }, {
+      Name: 'Government Authorization',
+      Logs: ['1', '2', '3'],
+      Id: 'b'
+    }, {
+      Name: 'Government Authorization',
+      Logs: ['1', '2', '3'],
+      Id: 'b'
+    }, {
+      Name: 'Government Authorization',
+      Logs: ['1', '2', '3'],
+      Id: 'b'
+    }, {
+      Name: 'Government Authorization',
+      Logs: ['1', '2', '3'],
+      Id: 'b'
+    }, {
+      Name: 'Government Authorization',
+      Logs: ['1', '2', '3'],
+      Id: 'b'
+    }]
     return (
       <div className="App">
         <header className="App-header">
@@ -34,6 +61,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <button onClick={ () => this.setState({open: !this.state.open})}>Open</button>
+        <Stepper steps={ steps } />
       </div>
     );
   }
