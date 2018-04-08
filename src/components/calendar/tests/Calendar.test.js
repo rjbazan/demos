@@ -1,12 +1,8 @@
 import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Provide } from 'redux';
 import Calendar from '../Calendar';
 import theme from '../../../sovos-theme';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const muiTheme = getMuiTheme(theme);
 
@@ -53,15 +49,15 @@ describe('components', () => {
       monthPicker.props().onChange(2018, 10);
       expect(enzymeWrapper.childAt(0).instance().state.month).toBe(11);
       expect(enzymeWrapper.childAt(0).instance().state.year).toBe(2018);
-      expect(monthPicker.props().defaultLabel).toBe('2018 - February');
+      expect(monthPicker.props().defaultLabel).toBe('2018 - March');
     })
 
     it('should call decrement', () => {
       const { enzymeWrapper, props } = setup();
       const monthPicker = enzymeWrapper.find('SovosIconButton').first();
       monthPicker.props().onClick();
-      expect(enzymeWrapper.childAt(0).instance().state.month).toBe(1);
-      expect(enzymeWrapper.childAt(0).instance().state.year).toBe(2018);
+      expect(enzymeWrapper.childAt(0).instance().state.month).toBe(new Date().getMonth() - 1);
+      expect(enzymeWrapper.childAt(0).instance().state.year).toBe(new Date().getFullYear());
 
     })
 
@@ -69,8 +65,8 @@ describe('components', () => {
       const { enzymeWrapper, props } = setup();
       const monthPicker = enzymeWrapper.find('SovosIconButton').last();
       monthPicker.props().onClick();
-      expect(enzymeWrapper.childAt(0).instance().state.month).toBe(3);
-      expect(enzymeWrapper.childAt(0).instance().state.year).toBe(2018);
+      expect(enzymeWrapper.childAt(0).instance().state.month).toBe(new Date().getMonth() + 1);
+      expect(enzymeWrapper.childAt(0).instance().state.year).toBe(new Date().getFullYear());
 
     })
 

@@ -1,15 +1,13 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Home from './Home';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 function setup() {
   const props = {
     addTodo: jest.fn()
   }
-  const enzymeWrapper = mount(<Home {...props} />);
+  const enzymeWrapper = shallow(<Home {...props} />);
   return {
     props,
     enzymeWrapper
