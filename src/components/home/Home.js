@@ -48,7 +48,7 @@ class App extends Component {
       Id: 'b'
     }, {
       Name: 'Government Authorization',
-      Logs: ['1', '2', '3'],
+      Logs: ['1', '2', '3', '8'],
       Id: 'b'
     }]
     return (
