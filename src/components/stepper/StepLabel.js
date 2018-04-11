@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import DownArrow from 'material-ui/svg-icons/navigation/expand-more';
 import UpArrow from 'material-ui/svg-icons/navigation/expand-less';
 import ExitIcon from 'material-ui/svg-icons/action/exit-to-app';
+import Transition from 'material-ui/styles/transitions';
 
 const styles = {
   header: {
@@ -20,8 +21,6 @@ const styles = {
   },
   circleSvg: {
     "display": "block",
-    "color": "#4EC283",
-    "fill": "#4EC283",
     "height": "24px",
     "width": "24px",
     "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
@@ -29,9 +28,12 @@ const styles = {
   },
   logsDropdown: {
     marginLeft: 5,
-    "display": "flex",
     "fontSize": "11px",
     opacity: 0.5
+  },
+  stepBtn: {
+    marginLeft: 'auto',
+    opacity: 0.5,
   },
   arrow: {
     display: 'flex',
@@ -46,11 +48,11 @@ class StepLabel extends PureComponent {
     return (
       <span style={styles.header}>
         <span style={styles.circle}>
-          <svg viewBox="0 0 24 24" style={styles.circleSvg}>
+          <svg viewBox="0 0 24 24" style={Object.assign({}, styles.circleSvg)}>
             <circle cx="12" cy="12" r="10"></circle>
           </svg>
         </span>
-        {this.props.stepName}
+        <span>{this.props.stepName}</span>
         <IconButton
           iconStyle={styles.arrow}
           style={styles.logsDropdown}
@@ -60,9 +62,9 @@ class StepLabel extends PureComponent {
         </IconButton>
 
         <IconButton
-          style={styles.logsDropdown}
+          style={styles.stepBtn}
           onClick={this.props.handleExitClick}
-        >
+        > 
           <ExitIcon />
         </IconButton>
       </span>

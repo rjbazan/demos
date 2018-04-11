@@ -59,7 +59,7 @@ class Step extends PureComponent {
   }
 
   handleExitClick = (e) => {
-
+    this.props.handleStepClick(this.props.step, this.props.index);
   }
 
   onMouseEnter = () => {
@@ -70,7 +70,8 @@ class Step extends PureComponent {
     this.setState({ hoverIndex: -1 });
   }
 
-  render() {  
+  render() {
+    const logs = this.state.showFullLogs ? this.props.step.Logs : [];
     return (
       <div
         style={Object.assign({}, styles.container2, { "backgroundColor": this.props.index === this.state.hoverIndex ? 'rgba(0,0,0, 0.1)' : undefined })}
@@ -78,16 +79,16 @@ class Step extends PureComponent {
         onMouseLeave={this.onMouseLeave}
       >
         <StepLabel
-          handleDropdownClick={ this.handleDropdownClick }
-          handleExitClick={ this.handleExitClick }
-          logsCount={ this.props.step.Logs.length }
-          stepName={ this.props.step.Name }
-          showFullLogs={ this.state.showFullLogs }
+          handleDropdownClick={this.handleDropdownClick}
+          handleExitClick={this.handleExitClick}
+          logsCount={this.props.step.Logs.length}
+          stepName={this.props.step.Name}
+          showFullLogs={this.state.showFullLogs}
         />
         <StepLogs
-          showFullLogs={ this.state.showFullLogs }
-          isLastItem={ this.props.isLastItem }
-          logs={ this.props.step.Logs }
+          showFullLogs={this.state.showFullLogs}
+          isLastItem={this.props.isLastItem}
+          logs={logs}
         />
       </div>
     )
@@ -95,7 +96,9 @@ class Step extends PureComponent {
 }
 
 Step.propTypes = {
-  step: PropTypes.object
+  step: PropTypes.object,
+  isLastItem: PropTypes.bool,
+  handleStepClick: PropTypes.func
 }
 
 export default Step;

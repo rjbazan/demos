@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import Step from './Step';
+import StepHeader from './StepHeader';
 
 const header = {
   "padding": "10px",
@@ -34,43 +35,42 @@ const fillerSpan = {
   "minHeight": "28px"
 }
 
-const groupHeader = {
-  "flex": "1 1 auto",
-  "marginLeft": "25px",
-  "borderLeft": "3px solid #4EC283",
-
-  paddingLeft: 32,
-  paddingBottom: 21,
-  color: '#699DC2'
-}
 class Steps extends PureComponent {
+
+  getStatusColor = (status) => {
+
+  }
 
   render() {
     return (<Paper style={wrapper}>
-    <div style={header}>Status</div>
+      <div style={header}>Status</div>
       <div style={styles}>
-        <div style={groupHeader}>
-          <span style={fillerSpan}></span>
-          <span>COMPLIANCE</span>
-        </div>
-        {this.props.steps.map((step, i) =>
-          <Fragment key={step.Id}>
-            <Step
-              step={step}
-              index={i}
-              isLastItem={i === this.props.steps.length - 1}
-            />
-            <div style={Object.assign({}, fillerDiv, {"borderLeft": i === this.props.steps.length - 1 ? undefined : "3px solid #4EC283"})}>
-              <span style={fillerSpan} />
-            </div>
-          </Fragment>)}
+        {this.props.categories.map((cat, catIndex) =>
+          <Fragment key={cat}>
+            <StepHeader category={cat} />
+            {this.props.steps.filter(s => s.Category === cat).map((step, stepIndex) =>
+              <Fragment key={step.Id}>
+                <Step
+                  step={step}
+                  index={stepIndex}
+                  isLastItem={catIndex === this.props.categories.length - 1 && stepIndex === this.props.steps.filter(s => s.Category === cat).length - 1}
+                  handleStepClick={this.props.handleStepClick}
+                  statusColor={this.getStatusColor()}
+                />
+                <div style={Object.assign({}, fillerDiv, { "borderLeft": catIndex === this.props.categories.length - 1 && stepIndex === this.props.steps.filter(s => s.Category === cat).length - 1 ? undefined : "3px solid #4EC283" })}>
+                  <span style={fillerSpan} />
+                </div>
+              </Fragment>)}
+          </Fragment>
+        )}
       </div>
     </Paper>)
   }
 }
 
 Steps.propTypes = {
-  steps: PropTypes.array
+  steps: PropTypes.array,
+  handleStepClick: PropTypes.func
 }
 
 export default Steps;
