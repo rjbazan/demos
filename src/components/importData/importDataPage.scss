@@ -1,0 +1,33 @@
+$primaryBlue: #14b9f1;
+$grayPageBackground: #fcfcfc;
+$grayInputDecorations: #d9d9d9;
+
+.import-data__page {
+  background-color: $grayPageBackground;
+}
+
+.import-data__row_horizontal-content {
+  display: flex;
+}
+
+.import-info-section {
+  padding-top: 20px;
+  display: flex;
+}
+
+.import-info-section p {
+  font-size: 15px;
+  height: 20px;
+}
+
+.import-info-section__headers {
+  padding-right: 20px;
+}
+
+.import-info-section__headers > p {
+  font-weight: 400;
+}
+
+.import-info-section__data > p {
+  font-weight: 300;
+}

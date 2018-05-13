@@ -34,7 +34,7 @@ class StepLogs extends PureComponent {
   render() {
     return (<div style={Object.assign({}, styles.step, { "borderLeft": this.props.isLastItem ? undefined : "3px solid #4EC283" })}>
       <ul style={styles.ul}>
-        {this.props.logs.slice(0, this.state.number).map(log => <StepLog log={log} key={ log.Id } />)}
+        {this.props.logs.slice(0, this.state.number).map(log => <StepLog log={log} key={ log.Id } isLastItem={ this.props.isLastItem } />)}
       </ul>
       <a onClick={this.handleMoreLogsClick} role="button">
         {this.props.logs.length > 5 && !this.state.expanded ? `See More (${this.props.logs.length - 5})` : ''}

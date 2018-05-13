@@ -7,7 +7,7 @@ import Steps from '../Steps';
 
 const muiTheme = getMuiTheme(theme);
 function setup(props) {
-  const enzymeWrapper = mount(<SovosThemeProvider theme={muiTheme}><Steps {...props} /></SovosThemeProvider>, {
+const enzymeWrapper = mount(<SovosThemeProvider theme={muiTheme}><Steps {...props} /></SovosThemeProvider>, {
     context: { muiTheme }
   });
 
