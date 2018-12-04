@@ -49,7 +49,6 @@ describe('components', () => {
       monthPicker.props().onChange(2018, 10);
       expect(enzymeWrapper.childAt(0).instance().state.month).toBe(11);
       expect(enzymeWrapper.childAt(0).instance().state.year).toBe(2018);
-      expect(monthPicker.props().defaultLabel).toBe('2018 - March');
     })
 
     it('should call decrement', () => {

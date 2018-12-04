@@ -1,6 +1,6 @@
 const ImportDataFormValidation = (values) => {
   const errors = {};
-  const requiredFields = ['CompanyIds', 'ProfileId', 'ImportBehavior', 'FileName'];
+  const requiredFields = ['Name', 'Password'];
   requiredFields.forEach((field) => {
     if (!values[field]) {
       errors[field] = 'Required';

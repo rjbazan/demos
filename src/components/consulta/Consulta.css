@@ -1,0 +1,39 @@
+.App {
+  background: #ebeef0;
+}
+.App-loading-bar {
+  background-color: rgb(64, 192, 240);
+  height: 3px;
+}
+.App-logo {
+  height: 40px;
+}
+
+.App-header {
+  background-color: rgb(63, 90, 114);
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.consulta-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.form-group {
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width:600px) {
+  .left-label-text-field, .dropdown-accumulator {
+    flex-wrap: wrap;
+  }
+  
+  .left-label-text-field label, .dropdown-accumulator > label {
+    flex-basis: 100%;
+  }
+}

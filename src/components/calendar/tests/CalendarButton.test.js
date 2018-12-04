@@ -118,5 +118,64 @@ describe('components', () => {
       expect(enzymeWrapper.props().onKeyboardFocus).not.toHaveBeenCalled();
     });
 
+    it('should render styles for max element', () => {
+      const obj = {
+        date: "February",
+        selected: false,
+        onClick: jest.fn(),
+        onKeyboardFocus: jest.fn(),
+        disabled: true,
+        max: true
+      }
+      const { enzymeWrapper, props } = setup(obj);
+      const enhancedBtn = enzymeWrapper.find('EnhancedButton');
+      expect(enhancedBtn.find('div').props().style.borderRadius).toBe('0px 15px 15px 0px');
+    });
+
+    it('should render styles for min element', () => {
+      const obj = {
+        date: "February",
+        selected: false,
+        onClick: jest.fn(),
+        onKeyboardFocus: jest.fn(),
+        disabled: true,
+        min: true
+      }
+      const { enzymeWrapper, props } = setup(obj);
+      const enhancedBtn = enzymeWrapper.find('EnhancedButton');
+      expect(enhancedBtn.find('div').props().style.borderRadius).toBe('15px 0px 0px 15px');
+    });
+
+    it('should render styles for center element', () => {
+      const obj = {
+        date: "February",
+        selected: false,
+        onClick: jest.fn(),
+        onKeyboardFocus: jest.fn(),
+        disabled: true,
+        range: true,
+        center: true
+      }
+      const { enzymeWrapper, props } = setup(obj);
+      const enhancedBtn = enzymeWrapper.find('EnhancedButton');
+      expect(enhancedBtn.find('div').props().style.borderRadius).toBe(undefined);
+      expect(enhancedBtn.find('div').props().style.borderRadius).toBe(undefined);
+    });
+
+    it('should render styles for range element', () => {
+      const obj = {
+        date: "February",
+        selected: false,
+        onClick: jest.fn(),
+        onKeyboardFocus: jest.fn(),
+        disabled: true,
+        range: true
+      }
+      const { enzymeWrapper, props } = setup(obj);
+      const enhancedBtn = enzymeWrapper.find('EnhancedButton');
+      expect(enhancedBtn.find('div').props().style.width).toBe('100%');
+      expect(enhancedBtn.find('div').props().style.left).toBe(0);
+    });
+
   })
 });

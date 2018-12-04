@@ -1,0 +1,6 @@
+.query-builder__container {
+  width: 600px;
+  border: 1px solid purple;
+  padding: 20px;
+  border-top: 5px solid purple;
+}

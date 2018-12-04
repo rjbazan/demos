@@ -67,6 +67,24 @@ describe('components', () => {
       expect(enzymeWrapper.childAt(0).instance().state.open).toBe(true);
     })
 
+    it('should call handleYearSelect', () => {
+      const obj = {
+        month: 'February',
+        year: 2018,
+        defaultLabel: 'February',
+        onChange: jest.fn(),
+        isYearPicker: false,
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        years: [2018, 2017, 2016, 2015, 2014],
+      }
+      const { enzymeWrapper, props } = setup(obj);
+      const flatButton = enzymeWrapper.find('button').first();
+      flatButton.simulate('click')
+      console.log(enzymeWrapper.find('RenderToLayer').props().render())
+
+      expect(enzymeWrapper.childAt(0).instance().state).toBe(true);
+    })
+
 
   })
 });

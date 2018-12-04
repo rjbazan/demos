@@ -4,13 +4,24 @@ import Transition from 'material-ui/styles/transitions';
 import EnhancedButton from 'material-ui/internal/EnhancedButton';
 
 function getStyles(props, context, state) {
-  const {disabled, selected} = props;
+  const {disabled, selected, range, min, max, center} = props;
   const {hover} = state;
   const {baseTheme, datePicker} = context.muiTheme;
 
   let labelColor = baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
   let buttonStateTransform = 'scale(0)';
+  let borderRadius;
+
+  if (max) {
+    borderRadius = '0px 15px 15px 0px';
+  } else if (min) {
+    borderRadius = '15px 0px 0px 15px';
+  } else if (center) {
+    borderRadius = undefined;
+  } else {
+    borderRadius = '50%';
+  }
 
   if (hover || selected) {
     labelColor = datePicker.selectTextColor;
@@ -23,7 +34,7 @@ function getStyles(props, context, state) {
       boxSizing: 'border-box',
       fontWeight: '400',
       opacity: disabled && '0.4',
-      padding: '4px 0px',
+      padding: range ? null : '4px 0px',
       position: 'relative',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       width: 42,
@@ -36,15 +47,15 @@ function getStyles(props, context, state) {
     },
     buttonState: {
       backgroundColor: baseTheme.palette.secondaryColor,
-      borderRadius: '50%',
+      borderRadius,
       height: 34,
-      left: 4,
+      left: range ? 0 : 4,
       opacity: buttonStateOpacity,
       position: 'absolute',
       top: 0,
       transform: buttonStateTransform,
       transition: Transition.easeOut(),
-      width: 34,
+      width: range ? '100%' : 34,
     },
   };
 }
@@ -105,6 +116,10 @@ class CalendarButton extends Component {
       locale,
       onClick, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
+      range, // eslint-disable-line no-unused-vars
+      center, // eslint-disable-line no-unused-vars
+      max, // eslint-disable-line no-unused-vars
+      min, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
